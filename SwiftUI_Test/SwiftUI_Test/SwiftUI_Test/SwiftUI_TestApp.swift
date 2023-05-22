@@ -67,6 +67,8 @@ struct MyScene: Scene {
     //active, inactive, background
     // active 는 화면이 위에 있어 event 처리가 가능한 상태, inactive 는 화면은 떠있지만 event처리가 불가능한 상태 (전화, 문자 등), background 는 background 상태일때를 의미한다.
     @Environment(\.scenePhase) private var scenePhase
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
         
     var body: some Scene {
         WindowGroup {
@@ -85,4 +87,8 @@ struct MyScene: Scene {
         // 이때 여러 Scene 이 있을수 있고, 하나의 scene 이라도 active 한 상태라면 active를 return 하게 된다.
         // 각각의 Scene 마다의 처리가 필요하다면 이곳에서는 불가능 하다.
     }
+}
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
 }

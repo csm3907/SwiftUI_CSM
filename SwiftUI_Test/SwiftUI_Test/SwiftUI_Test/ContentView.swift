@@ -34,10 +34,10 @@ struct ContentView: View { // View를 상속하는 모든것이 View 이다.
                 Text("Update")
             }
         }
-        .onAppear { // viewDidLoad
+        .onAppear { // viewDidAppear
             
         }
-        .onDisappear { // viewDidDisapear
+        .onDisappear { // viewDidDisappear
             
         }
     }
