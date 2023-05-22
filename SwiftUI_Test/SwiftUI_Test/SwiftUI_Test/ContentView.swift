@@ -25,15 +25,30 @@ struct ContentView: View { // View를 상속하는 모든것이 View 이다.
     var body: some View {
         VStack { // 수직으로 된 Group View를 Return 한다.
             Text(data)
-                .font(.headline) // modifier 를 추가 하는것이다.
+                .font(.subheadline) // modifier 를 추가 하는것이다.
+                .padding() // 이것도 역시 modifier 이다.
+                .bold()
+            
+            // 아래의 경우 modifier의 순서에 따라서 View가 전부 달라진다.
+            Text(data)
+                .background(.yellow)
                 .padding()
             
+            Text(data)
+                .padding()
+                .background(.yellow)
+                
             Button {
                 data = "\(Int.random(in: 1...100))"
             } label: {
                 Text("Update")
             }
+            .padding()
+            .bold()
+            
         }
+        .font(.headline)
+        .padding() // Padding 같은 경우는 Text, Button 에 상속되지 않는다. -> 필요한 곳에 직접 적어 주어야 한다.
         .onAppear { // viewDidAppear
             
         }
@@ -42,6 +57,11 @@ struct ContentView: View { // View를 상속하는 모든것이 View 이다.
         }
     }
 }
+
+// Modifier 란
+// 1. 모든 Modifier는 View를 return 한다.
+// 2. Modifier 는 View Protocol 안에 정의 되어 있다.
+// 3. chaining 이 가능하다. -> 이유는 모든 modifier가 전부 다 View를 return 하기 때문이다.
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
