@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUIMemoApp: App {
-    let persistenceController = PersistenceController.shared
     
-    @StateObject var store = MemoStore()
+    let manager = CoreDataManager.shared
+    
+    @StateObject var navigationState = NavigationState()
+    
+    //@StateObject var store = MemoStore()
     /*
      A property wrapper type that instantiates an observable object.
      ObservableObject를 객체화한다
@@ -22,8 +25,10 @@ struct SwiftUIMemoApp: App {
     var body: some Scene {
         WindowGroup {
             MainListView()
-                .environmentObject(store)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                //.environmentObject(store)
+                .environmentObject(manager) // Custom 한 class 를 환경에 추가할때
+                .environment(\.managedObjectContext, manager.mainContext) // 기존의 Environment 안에 추가를 해줄때
+                .environmentObject(navigationState)
         }
     }
 }

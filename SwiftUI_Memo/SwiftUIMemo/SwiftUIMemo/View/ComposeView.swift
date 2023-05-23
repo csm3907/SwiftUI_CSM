@@ -10,9 +10,13 @@ import SwiftUI
 struct ComposeView: View {
     
     // 만약 body 에서 observe가 필요 없다면? -> 그냥 property wrapper 없이 만들어 주면 되는 것이다.
-    var memo: Memo? = nil
+    //var memo: Memo? = nil
     
-    @EnvironmentObject var store: MemoStore
+    var memo: MemoEntity? = nil
+    
+    //@EnvironmentObject var store: MemoStore
+    
+    @EnvironmentObject var manager: CoreDataManager
     
     @Environment(\.dismiss) var dismiss
     
@@ -34,19 +38,63 @@ struct ComposeView: View {
      */
     
     var body: some View {
+        
+        #if os(macOS)
+        VStack {
+            TextEditor(text: $content) // content 와 TextEditor가 binding 이 된다. 달러가 필요하다. two-way binding 이라고 한다.
+                .padding()
+                .onAppear {
+                    if let memo = memo?.content {
+                        content = memo
+                    }
+                }
+            
+            HStack {
+                
+                Spacer()
+                
+                Button {
+                    dismiss()
+                } label: {
+                    Text("취소")
+                }
+                
+                Button {
+                    if let memo = memo {
+                        //store.update(memo: memo, content: content)
+                        manager.update(memo: memo, content: content)
+                    } else {
+                        //store.insert(memo: content) // 저장 시작
+                        manager.addMemo(content: content)
+                    }
+                    
+                    dismiss()
+                } label: {
+                    Text("저장")
+                }
+                .buttonStyle(.borderedProminent)
+                
+            }
+        }
+        .padding()
+        .frame(minWidth: 500, minHeight: 300)
+        #else
+        
         NavigationView {
             VStack {
                 TextEditor(text: $content) // content 와 TextEditor가 binding 이 된다. 달러가 필요하다. two-way binding 이라고 한다.
                     .padding()
                     .onAppear {
-                        if let memo {
-                            content = memo.content
+                        if let memo = memo?.content {
+                            content = memo
                         }
                     }
                 
             }
             .navigationTitle(memo != nil ? "메모편집" : "새 메모")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar { // Navigation Tool Bar 추가 진행
                 ToolbarItemGroup(placement: .navigationBarLeading) { // 왼쪽 Navigation Item 추가 진행
                     Button {
@@ -59,9 +107,11 @@ struct ComposeView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) { // 오른쪽 Navigation Item 추가 진행
                     Button {
                         if let memo = memo {
-                            store.update(memo: memo, content: content)
+                            //store.update(memo: memo, content: content)
+                            manager.update(memo: memo, content: content)
                         } else {
-                            store.insert(memo: content) // 저장 시작
+                            //store.insert(memo: content) // 저장 시작
+                            manager.addMemo(content: content)
                         }
                         
                         dismiss()
@@ -72,12 +122,14 @@ struct ComposeView: View {
                 
             }
         }
+    #endif
     }
 }
 
 struct ComposeView_Previews: PreviewProvider {
     static var previews: some View {
         ComposeView()
-            .environmentObject(MemoStore())
+            //.environmentObject(MemoStore())
+            .environmentObject(CoreDataManager.shared)
     }
 }
