@@ -26,10 +26,15 @@ import SwiftUI
 struct VStack_Tutorials: View {
     var body: some View {
         HStack {
-            heart
-            club
-            spade
-            diamond
+            VStack(alignment: .leading, spacing: 20) {
+                heart
+                club
+                spade
+                diamond
+            }
+            .frame(maxHeight: .infinity)
+            
+            Spacer()
         }
     }
     

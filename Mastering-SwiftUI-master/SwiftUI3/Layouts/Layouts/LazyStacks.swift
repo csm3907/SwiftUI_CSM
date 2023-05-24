@@ -25,11 +25,18 @@ import SwiftUI
 
 struct LazyStacks: View {
     var body: some View {
-        HStack {
-            ForEach(1 ..< 101) { num in
-                NumberView(number: num)
-            }
+        
+        ScrollView(.horizontal) {
+            LazyHStack { // 3. 이것을 위해서 Lazy Stack 이 나왔고 이것은 보이기만 하는 View를 진짜로 생성 하게 된다.
+                ForEach(1 ..< 101) { num in
+                    NumberView(number: num) // 1.Stack 은 보이지 않아도 해당 View를 만든다. ( reuse 가 아니다. )
+                    // 2. 때문에 만약 이미지 다운로드 같은게 있으면 메모리를 다 잡아먹을 수가 있다.
+                }
+            } // Stack 은 자동으로 scroll 되지 않는다. -> ScrollView 안에 넣어 주어야 한다.
         }
+        // Lazy Stack은 즉 필요한 시점에 View를 생성 하게 된다.
+        // 그렇다면 왜 LazyStack 만을 사용 하지 않는 것인가? -> Apple 에서 Stack 사용 후 Lazy로 바꾸는것을 추천 하였다.
+        
     }
 }
 

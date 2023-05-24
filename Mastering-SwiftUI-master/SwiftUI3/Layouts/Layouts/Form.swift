@@ -23,6 +23,7 @@
 
 import SwiftUI
 
+// Form 은 여러가지 입력을 받는 화면엔서 유용하게 쓰일 수가 있다.
 struct Form_Tutorials: View {
     @State private var email = ""
     @State private var password = ""
@@ -31,10 +32,16 @@ struct Form_Tutorials: View {
     @State private var receiveEmail = false
     
     var body: some View {
-        VStack {
-            TextField("Email", text: $email)
-            SecureField("Password", text: $password)
-            TextField("Address", text: $address)
+        Form { // 이것을 Vstack 에서 Form 으로 변경만 하면 SwiftUI 가 알아서 View를 설정 화면처럼 만들어 준다.
+            // Scroll 도 자동으로 들어간다.
+            // 입력 화면 역시 이뻐진다.
+            // 만약 나누고 싶다면?? -> Section 으로 나누기 처리를 해주면 된다.
+            
+            Section {
+                TextField("Email", text: $email)
+                SecureField("Password", text: $password)
+                TextField("Address", text: $address)
+            }
             
             Stepper("Age: \(age)", value: $age)
             Toggle(isOn: $receiveEmail, label: { Text("Receive Email") })

@@ -25,12 +25,14 @@ import SwiftUI
 
 struct ZStack_Tutorials: View {
     var body: some View {
-        HStack {
+        ZStack(alignment: .topLeading) {
             heart
             club
             spade
-            diamond
+            diamond // 가장 마지막것이 위에 올라오게 된다.
+                .offset(x: 100, y: 200) // Offset 을 이동시킬 수 있다.
         }
+        
     }
     
     private var heart: some View {
@@ -45,6 +47,7 @@ struct ZStack_Tutorials: View {
             .resizable()
             .frame(width: 100, height: 100)
             .foregroundColor(.black)
+            .opacity(0.5)
     }
     
     private var spade: some View {
@@ -52,6 +55,7 @@ struct ZStack_Tutorials: View {
             .resizable()
             .frame(width: 50, height: 50)
             .foregroundColor(.black)
+            .opacity(0.5)
     }
     
     private var diamond: some View {
@@ -59,6 +63,7 @@ struct ZStack_Tutorials: View {
             .resizable()
             .frame(width: 200, height: 200)
             .foregroundColor(.red)
+            .opacity(0.5)
     }
 }
 

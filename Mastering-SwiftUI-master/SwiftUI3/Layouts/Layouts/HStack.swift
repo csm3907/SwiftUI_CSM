@@ -24,8 +24,15 @@
 import SwiftUI
 
 struct HStack_Tutorials: View {
-    var body: some View {
-        heart            
+    var body: some View { // Body 에서는 1가지의 View 만 return 하여야 한다
+        HStack(spacing: 0) { // Frame 을 지정하지 않으면 최소 크기로 추가가 된다. // 또한 nil 이면 default가 되고 0을 해줘야 spacing이 없어진다.
+            heart
+            club
+            spade
+            diamond
+        }
+        //.frame(width: 300, height: 300)
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // 사용 가능한 최대로 가능하다.
     }
     
     private var heart: some View {
@@ -38,7 +45,7 @@ struct HStack_Tutorials: View {
     private var club: some View {
         Image(systemName: "suit.club.fill")
             .resizable()
-            .frame(width: 50, height: 50)
+            .frame(width: 100, height: 100)
             .foregroundColor(.black)
     }
     

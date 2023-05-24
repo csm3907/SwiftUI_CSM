@@ -25,20 +25,31 @@ import SwiftUI
 
 struct ScrollView_Tutorials: View {
     var body: some View {
-        VStack {
-            EmojiView(emoji: "😀")
-            EmojiView(emoji: "😍")
-            EmojiView(emoji: "😎")
-
-            EmojiView(emoji: "🐶")
-            EmojiView(emoji: "🐱")
-            EmojiView(emoji: "🐯")
-
-            EmojiView(emoji: "🍎")
-            EmojiView(emoji: "🍌")
-            EmojiView(emoji: "🍓")
+        
+        
+        //ScrollView(.vertical, showsIndicators: false) { // Indicator 지우는 방법
+//        ScrollView(.vertical, showsIndicators: false) {
+//            VStack {
+//                EmojiView(emoji: "😀")
+//                EmojiView(emoji: "😍")
+//                EmojiView(emoji: "😎")
+//
+//                EmojiView(emoji: "🐶")
+//                EmojiView(emoji: "🐱")
+//                EmojiView(emoji: "🐯")
+//
+//                EmojiView(emoji: "🍎")
+//                EmojiView(emoji: "🍌")
+//                EmojiView(emoji: "🍓")
+//            }
+//            .frame(maxWidth: .infinity)
+//        }
+        
+        ScrollView([.horizontal, .vertical]) { // 축을 2개 다 주면 전체 Scroll 이 가능해 진다.
+            BigPhotoView()
         }
-        .frame(maxWidth: .infinity)
+        .ignoresSafeArea() // SafeArea 무시하기
+        
     }
 }
 
