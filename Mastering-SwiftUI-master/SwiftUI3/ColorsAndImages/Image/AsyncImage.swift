@@ -27,7 +27,19 @@ struct AsyncImage_Tutorials: View {
     let url = URL(string: "https://kxcodingblob.blob.core.windows.net/mastering-ios/2.jpg")
     
     var body: some View {
-        EmptyView()
+        
+        AsyncImage(url: url) { phase in
+            switch phase {
+            case .empty:
+                ProgressView()
+            case .failure(let error):
+                Label("이미지 다운로드 실패", systemImage: "x.circle")
+            case .success(let image):
+                image.resizable().scaledToFit()
+            }
+        }
+
+        
     }
 }
 

@@ -26,7 +26,13 @@ import SwiftUI
 struct Image_Tutorials: View {
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Image("flower", bundle: nil)
+                .renderingMode(.template)
+                .foregroundColor(.yellow)
+            
+            Image("flower-bkg", bundle: nil)
+                .renderingMode(.template)
+                .foregroundColor(.yellow)
         }
     }
 }

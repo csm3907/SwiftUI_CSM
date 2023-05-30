@@ -35,26 +35,31 @@ struct Materials: View {
                 Text("Lorem Ipsum")
                     .frame(maxWidth: .infinity)
                     .frame(height: 80)
+                    .background(.ultraThinMaterial)
                     
                     
                 Text("Lorem Ipsum")
                     .frame(maxWidth: .infinity)
                     .frame(height: 80)
+                    .background(.thinMaterial)
                     
                 
                 Text("Lorem Ipsum")
                     .frame(maxWidth: .infinity)
                     .frame(height: 80)
+                    .background(.regularMaterial)
                 
                     
                 Text("Lorem Ipsum")
                     .frame(maxWidth: .infinity)
                     .frame(height: 80)
+                    .background(.thickMaterial)
                 
                 
                 Text("Lorem Ipsum")
                     .frame(maxWidth: .infinity)
                     .frame(height: 80)
+                    .background(.ultraThickMaterial)
                 
             }
             .font(.largeTitle)

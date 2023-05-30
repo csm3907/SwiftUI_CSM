@@ -26,8 +26,23 @@ import SwiftUI
 struct Color_Tutorials: View {
     var body: some View {
         VStack {
-                      
+            Text("Color")
+                .font(.largeTitle)
+                .foregroundColor(.red)
+            
+            Color.blue
+            Color.yellow
+            Color.cyan
+            
+            Color(.sRGB, red: 70/255, green: 70/255, blue: 70/255, opacity: 1)
+            
+            Color(uiColor: UIColor(red: 70/255, green: 70/255, blue: 70/255, alpha: 1))
+            
+            Color("MyColor") // 
         }
+        .background(Color(.systemBackground)) // dark Mode, light Mode의 background 먹이기
+        
+    
     }
 }
 
