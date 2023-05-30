@@ -39,6 +39,9 @@ struct DatePicker_Tutorials: View {
             
             Spacer()
             
+            DatePicker("날짜 선택", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
+                .padding()
+                .datePickerStyle(.wheel)
             
         }
     }

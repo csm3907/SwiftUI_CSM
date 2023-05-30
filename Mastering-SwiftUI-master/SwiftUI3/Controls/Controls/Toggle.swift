@@ -36,7 +36,32 @@ struct Toggle_Tutorials: View {
                 .frame(width: 300, height: 300)
             
             // #1
+            Toggle("Toggle", isOn: $isOn)
+                .padding()
             
+            
+            Toggle(isOn: $isOn) {
+                Label("ON/OFF", systemImage: "bolt")
+            }
+            .padding()
+            
+            Toggle(isOn: $isOn) {
+                EmptyView()
+            }
+            .padding()
+            .labelsHidden()
+            
+            VStack {
+                
+                Toggle(isOn: $isOn) {
+                    EmptyView()
+                }
+                .padding()
+                .labelsHidden()
+                
+                
+                Label("ON/OFF", systemImage: "bolt")
+            }
         }
     }
 }

@@ -27,9 +27,18 @@ struct Picker_Tutorials: View {
     @State private var selected: Sports = .soccer
     
     var body: some View {
-        VStack {
+        List {
             Text(selected.rawValue)
                 .font(.system(size: 200))
+                
+            
+            Picker("Favorite", selection: $selected) {
+                ForEach(Sports.allCases) { item in
+                    Text(item.rawValue)
+                }
+            }
+            
+            
             
             
         }

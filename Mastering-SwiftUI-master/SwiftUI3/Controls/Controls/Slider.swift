@@ -28,6 +28,8 @@ struct Slider_Tutorials: View {
     @State private var g = 0.0
     @State private var b = 0.0
     
+    @State private var dragging = false
+    
     var color: Color {
         Color(red: r / 255, green: g / 255, blue: b / 255)
     }
@@ -40,6 +42,7 @@ struct Slider_Tutorials: View {
                 b = 0.0
             }
             .buttonStyle(.borderedProminent)
+            .disabled(dragging)
             
             
             Image(systemName: "umbrella.fill")
@@ -47,6 +50,66 @@ struct Slider_Tutorials: View {
                 .foregroundColor(color)
                 .frame(width: 250, height: 250)
 
+            Slider(value: $r, in: 0...255, step: 1) {
+                EmptyView()
+            } minimumValueLabel: {
+                Text("R")
+                    .foregroundColor(.red)
+            } maximumValueLabel: {
+                Text("\(Int(r))")
+            } onEditingChanged: { isChanged in
+                if isChanged {
+                    print("드래그 중이다.")
+                    dragging = isChanged
+                } else {
+                    print("드래그가 완료 되었따.")
+                    dragging = isChanged
+                }
+            }
+            .padding()
+            .tint(.red)
+            
+            Slider(value: $g, in: 0...255, step: 1) {
+                EmptyView()
+            } minimumValueLabel: {
+                Text("G")
+                    .foregroundColor(.green)
+            } maximumValueLabel: {
+                Text("\(Int(g))")
+            } onEditingChanged: { isChanged in
+                if isChanged {
+                    print("드래그 중이다.")
+                    dragging = isChanged
+                } else {
+                    print("드래그가 완료 되었따.")
+                    dragging = isChanged
+                }
+            }
+            .padding()
+            .tint(.green)
+            
+            Slider(value: $b, in: 0...255, step: 1) {
+                EmptyView()
+            } minimumValueLabel: {
+                Text("B")
+                    .foregroundColor(.blue)
+                    .frame(minWidth: 50)
+            } maximumValueLabel: {
+                Text("\(Int(b))")
+                    .frame(minWidth: 50)
+            } onEditingChanged: { isChanged in
+                if isChanged {
+                    print("드래그 중이다.")
+                    dragging = isChanged
+                } else {
+                    print("드래그가 완료 되었따.")
+                    dragging = isChanged
+                }
+            }
+            .padding()
+            .tint(.blue)
+
+            
         }
     }
 }

@@ -37,14 +37,17 @@ struct ButtonStyles: View {
             Button("Bordered", action: {})
                 .padding()
                 .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle(radius: 16))
             
             Button("Bordered Prominent", action: {})
                 .padding()
                 .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
             
             Button("Borderless", action: {})
                 .padding()
                 .buttonStyle(.borderless)
+            
             
             #if os(macOS)
             Button("Link", action: {})
@@ -57,7 +60,8 @@ struct ButtonStyles: View {
                 .padding()
                 .buttonStyle(.card)
             #endif
-        }        
+        }
+        .tint(.yellow)
     }
 }
 

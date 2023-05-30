@@ -28,7 +28,9 @@ struct ColorPicker_Tutorials: View {
         
     var body: some View {
         VStack {
-            
+            ColorPicker("칼러 선택", selection: $backgroundColor, supportsOpacity: false)
+                .padding()
+                .labelsHidden()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backgroundColor)

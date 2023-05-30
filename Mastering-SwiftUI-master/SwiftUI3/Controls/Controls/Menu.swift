@@ -25,7 +25,112 @@ import SwiftUI
 
 struct Menu_Tutorials: View {
     var body: some View {
-        EmptyView()
+        VStack {
+            Menu("FileMenu") {
+                Button("Copy", action: {  })
+                
+                Button {
+                    
+                } label: {
+                    Label("Change Folder Name", systemImage: "pencil")
+                }
+                
+                Button(role: .destructive) {
+                    
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+
+                Menu("Share") {
+                    Button {
+                        
+                    } label: {
+                        Label("Email", systemImage: "envelope")
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Label("Air Play", systemImage: "airplayvideo")
+                    }
+
+                }
+                
+                
+                Menu {
+                    Button {
+                        
+                    } label: {
+                        Label("Email", systemImage: "envelope")
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Label("Air Play", systemImage: "airplayvideo")
+                    }
+                } label: {
+                    Label("Share", systemImage: "link")
+                }
+
+
+            }
+            .padding()
+            
+            
+            Menu("FileMenu") {
+                Button("Copy", action: {  })
+                
+                Button {
+                    
+                } label: {
+                    Label("Change Folder Name", systemImage: "pencil")
+                }
+                
+                Button(role: .destructive) {
+                    
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+
+                Menu("Share") {
+                    Button {
+                        
+                    } label: {
+                        Label("Email", systemImage: "envelope")
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Label("Air Play", systemImage: "airplayvideo")
+                    }
+
+                }
+                
+                
+                Menu {
+                    Button {
+                        
+                    } label: {
+                        Label("Email", systemImage: "envelope")
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Label("Air Play", systemImage: "airplayvideo")
+                    }
+                } label: {
+                    Label("Share", systemImage: "link")
+                }
+
+
+            }  primaryAction: {
+                print("Do something Primary Action...")
+            }
+            .padding()
+        }
     }
 }
 

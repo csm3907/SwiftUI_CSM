@@ -29,10 +29,38 @@ struct Link_Tutorials: View {
     
     var body: some View {
         VStack {
-            Button("Apple Developer") {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            Button("Apple Developer") {
+//                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//            }
+//            .padding()
+            
+            Link("Apple Developer", destination: url)
+                .padding()
+            
+            Link("Apple Sms", destination: sms)
+                .padding()
+            
+            Link(destination: url) {
+                Label("Apple Developer", systemImage: "house")
+                    .padding()
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+                    .environment(\.openURL, OpenURLAction(handler: { url in
+                        if url.absoluteString.contains("kxcoding.com") {
+                            print("Play \(url)")
+                            return .handled
+                        }
+                        else if url.absoluteString.hasPrefix("http://") {
+                            var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+                            components.scheme = "https"
+                            return .systemAction(components.url!)
+                        }
+                        else if url.absoluteString.contains("badsite.com") {
+                            return .discarded
+                        }
+                        
+                        return .systemAction
+                    }))
             }
-            .padding()
         }
     }
 }

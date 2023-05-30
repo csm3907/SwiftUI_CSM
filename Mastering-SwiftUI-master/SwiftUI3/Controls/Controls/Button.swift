@@ -39,6 +39,28 @@ struct Button_Tutorials: View {
             Spacer()
             
             // #1
+            
+            Button {
+                value = Int.random(in: 1...100)
+            } label: {
+                Image(systemName: "repeat")
+                Text("Generate")
+            }
+            .padding()
+            .buttonBorderShape(.roundedRectangle)
+            .background(.blue)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+            
+            // Title 을 넣어서 바로 출력하는 button
+            Button("Generate Title") {
+                value = Int.random(in: 1...100)
+            }
+            .padding()
+            
+            
+
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
