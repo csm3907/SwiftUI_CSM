@@ -23,6 +23,8 @@
 
 import SwiftUI
 
+// Label 은 이미지와 Text를 한꺼번에 출력하는데 특화 되어있다. ( Text 와의 다른 점이다. )
+
 struct Label_Tutorials: View {
     var body: some View {
         VStack(spacing: 30) {
@@ -31,6 +33,11 @@ struct Label_Tutorials: View {
                 Text("User Profile")
             }
             .font(.largeTitle)
+            
+            
+            Label("UserProfile", systemImage: "pencil") // SFSymbols 에서 systemImage를 확인이 가능하다.
+                .font(.largeTitle)
+            
             
             HStack {
                 Image("logo")
@@ -47,6 +54,34 @@ struct Label_Tutorials: View {
                 Text("KxCoding")
                     .font(.largeTitle)
             }
+            
+            
+            Label { // 오른쪽에 나오는 화면
+                Text("KxCoding")
+                    .font(.largeTitle)
+                
+            } icon: {
+                Image("logo")
+                    .resizable()
+                    .aspectRatio(1.0, contentMode: .fit)
+                    .frame(width: 60)
+                    .clipShape(Circle())
+                    .overlay {
+                        Circle()
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(.blue)
+                    }
+            }
+
+        }
+        .toolbar {
+            Button {
+                
+            } label: {
+                Label("UserProfile", systemImage: "pencil")
+                    .labelStyle(.titleOnly)
+            }
+
         }
     }
 }

@@ -28,7 +28,19 @@ let longText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
 struct Text_Tutorials: View {
     var body: some View {
         VStack {
-            Text("Hello, World!")
+            //Text("Hello") // 이런식으로 Localizable 안에 있으면 자동적으로 적용이 된다.
+            Text(verbatim: "Hello") // 이렇게 Localizable 적용 안하고 바로 지정도 가능하다.
+                .font(.largeTitle)
+                .foregroundColor(.blue)
+                .background(.black)
+            
+            Text(longText)
+                .frame(width: 200)
+                .lineLimit(7) // 줄수 제한
+                .truncationMode(.middle)
+                .multilineTextAlignment(.center) // 정렬 방법
+                .lineSpacing(7) // Line의 여백을 지정하는 것이다.
+            
         }
     }
 }

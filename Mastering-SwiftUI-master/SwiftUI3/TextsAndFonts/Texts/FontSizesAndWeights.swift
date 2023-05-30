@@ -27,33 +27,37 @@ struct FontSizesAndWeights: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("50pt Font")
+                .font(.system(size: 50))
             
             
             Text("Black")
+                .font(.system(size: 50, weight: .black, design: .default))
             
             
             Text("Heavy")
-            
+                .font(.system(size: 50, weight: .heavy, design: .default))
             
             Text("Bold")
-            
+                .font(.system(size: 50, weight: .bold, design: .default))
             
             Text("Semibold")
-            
+                .font(.system(size: 50, weight: .semibold, design: .default))
             
             Text("Medium")
-            
+                .font(.system(size: 50, weight: .medium, design: .default))
             
             Text("Regular")
-            
+                .font(.system(size: 50, weight: .regular, design: .default))
             
             Text("Light")
-            
+                .font(.system(size: 50, weight: .light, design: .default))
             
             Text("Thin")
-            
+                .font(.system(size: 50, weight: .thin, design: .default))
             
             Text("Ultra Light")
+                .font(.system(size: 50))
+                .fontWeight(.ultraLight)
             
         }
     }

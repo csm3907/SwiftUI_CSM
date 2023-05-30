@@ -24,21 +24,41 @@
 import SwiftUI
 
 struct Sheet_Tutorials: View {
+    
+    @State private var isPresent = false
+    @State private var isFullScreenPresent = false
+    @State private var imageData: ImageData?
+    
     var body: some View {
         VStack {
             Button {
-                
+                //isPresent = true
+                imageData = ImageData(name: "big-photo", filters: [], date: .now)
             } label: {
                 Text("Card Modal")
             }
             .padding()
+//            .sheet(isPresented: $isPresent, onDismiss: {
+//
+//            }) {
+//                ImageScene(presentModal: $isPresent)
+//            }
+            .sheet(item: $imageData) { imageData in
+                OptionalImageScene(imageData: imageData)
+            }
 
             Button {
-                
+                isFullScreenPresent = true
             } label: {
                 Text("Fullscreen")
             }
             .padding()
+            .fullScreenCover(isPresented: $isFullScreenPresent) {
+                
+            } content: {
+                ImageScene(presentModal: $isFullScreenPresent)
+            }
+
         }
     }
 }

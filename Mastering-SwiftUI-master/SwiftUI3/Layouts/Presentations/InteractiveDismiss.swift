@@ -26,6 +26,8 @@ import SwiftUI
 struct InteractiveDismiss: View {
     @State private var showComposer = false
     
+    @State private var edited = false
+    
     var body: some View {
         Button {
             showComposer = true
@@ -34,7 +36,8 @@ struct InteractiveDismiss: View {
         }
         .padding()        
         .sheet(isPresented: $showComposer, onDismiss: nil) {
-            ComposeScene(edited: .constant(false))
+            ComposeScene(edited: $edited)
+                .interactiveDismissDisabled(edited)
         }
     }
 }

@@ -24,6 +24,13 @@
 import SwiftUI
 
 struct ImageScene: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var presentModal: Bool
+    
     var body: some View {
         Image("big-photo")
             .resizable()
@@ -31,7 +38,9 @@ struct ImageScene: View {
             .ignoresSafeArea()
             .overlay(alignment: .top) {
                 Button {
+                    //presentationMode.wrappedValue.dismiss()
                     
+                    presentModal = false
                 } label: {
                     Image(systemName: "x.circle")
                         .resizable()
@@ -45,6 +54,6 @@ struct ImageScene: View {
 
 struct ImageScene_Previews: PreviewProvider {
     static var previews: some View {
-        ImageScene()
+        ImageScene(presentModal: .constant(true)) // Binding 중 정적 Binding 을 사용한다.
     }
 }

@@ -27,7 +27,15 @@ struct TextEditor_Tutorials: View {
     @State private var content = ""
     
     var body: some View {
-        Text("Hello, World!")
+        TextEditor(text: $content)
+            .padding()
+//            .font(.largeTitle)
+//            .foregroundColor(.blue)
+//            .multilineTextAlignment(.center)
+//            .textInputAutocapitalization(.never)
+//            .keyboardType(.asciiCapable)
+//            .lineSpacing(.infinity)
+//            .autocorrectionDisabled(true)
     }
 }
 
