@@ -26,21 +26,57 @@ import SwiftUI
 struct TapGesture_Tutorials: View {
     @State private var tapCount = 0
     
+    var tapToPlus: some Gesture {
+        return TapGesture()
+            .onEnded { _ in
+                withAnimation {
+                    tapCount += 1
+                }
+            }
+    }
+    
+    var doubleTapGesture: some Gesture {
+        return TapGesture(count: 2)
+            .onEnded { _ in
+                withAnimation {
+                    tapCount += 10
+                }
+            }
+    }
+    
     var body: some View {
         VStack {
             Text("\(tapCount)")
                 .font(.system(size: 250))
+                .onTapGesture(count: 2) {
+                    tapCount = 0
+                }
             
             HStack {
                 Image(systemName: "minus.circle")
                     .font(.system(size: 100))
                     .foregroundColor(.red)
                     .padding()
+                    .gesture(
+                        TapGesture()
+                            .onEnded({ _ in
+                                withAnimation {
+                                    tapCount -= 1
+                                }
+                                
+                        })
+                    )
+                    
+                    
                 
                 Image(systemName: "plus.circle")
                     .font(.system(size: 100))
                     .foregroundColor(.blue)
                     .padding()
+                    .gesture(doubleTapGesture)
+                    .gesture(tapToPlus)
+                    
+                    
             }
         }
     }

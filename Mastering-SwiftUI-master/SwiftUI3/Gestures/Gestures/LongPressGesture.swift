@@ -26,11 +26,22 @@ import SwiftUI
 struct LongPressGesture_Tutorials: View {
     @State private var showOriginal = true
     
+    var longPressGesture: some Gesture {
+        return LongPressGesture()
+            .onEnded { _ in
+                showOriginal.toggle()
+            }
+    }
+    
     var body: some View {
         Image("swiftui-logo")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 200, height: 200)
+            .blur(radius: showOriginal ? 0.0 : 40.0)
+            .animation(.easeInOut, value: showOriginal)
+            .gesture(longPressGesture)
+
     }
 }
 
