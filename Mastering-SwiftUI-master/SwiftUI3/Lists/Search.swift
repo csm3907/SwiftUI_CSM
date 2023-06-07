@@ -31,7 +31,26 @@ struct Search: View {
         List(items) { item in
             Text(item.name)
         }
+        .searchable(text: $keyword, placement: .automatic, prompt: "검색어를 입력하세요.") {
+            
+        }
+        .onChange(of: keyword) { newValue in
+            if newValue.count == 0 {
+                items = AppleProduct.sampleList
+            }
+        }
+        .onSubmit(of: .search) {
+            if keyword.count > 0 {
+                items = AppleProduct.sampleList.filter { $0.name.contains(keyword) }
+            } else {
+                items = AppleProduct.sampleList
+            }
+        }
+        
     }
+    
+    
+    
 }
 
 struct Search_Previews: PreviewProvider {

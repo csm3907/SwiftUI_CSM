@@ -26,6 +26,8 @@ import SwiftUI
 struct EnvironmentObjects_Tutorials: View {
     @State private var value: String = ""
     
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
         VStack {
             HStack {
@@ -34,15 +36,15 @@ struct EnvironmentObjects_Tutorials: View {
                     .padding()
                 
                 Button {
-                    
+                    viewModel.list.append(value)
                 } label: {
                     Text("Add To List")
                 }
                 .padding()
             }
             
-            List {
-                Text("Hello")
+            List(viewModel.list, id: \.self){ item in
+                Text(item)
             }
         }
     }
@@ -51,5 +53,6 @@ struct EnvironmentObjects_Tutorials: View {
 struct EnvironmentObjects_Previews: PreviewProvider {
     static var previews: some View {
         EnvironmentObjects_Tutorials()
+            .environmentObject(ViewModel())
     }
 }

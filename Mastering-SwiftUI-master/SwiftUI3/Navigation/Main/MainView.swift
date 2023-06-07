@@ -24,8 +24,29 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var push = false
+    
     var body: some View {
-        Text("Hello, World!")        
+        NavigationView {
+            VStack {
+                Text("Hello, World!")
+                
+                Button {
+                    push = true
+                } label: {
+                    Text("conditional Push")
+                }
+                .padding()
+                
+                NavigationLink("NavigationLink", isActive: $push) {
+                    EmojiView(emoji: Emoji.flex.rawValue)
+                        .navigationTitle("Second")
+                }
+                
+            }
+            .navigationTitle("Hello")
+        }
+        
     }
 }
 

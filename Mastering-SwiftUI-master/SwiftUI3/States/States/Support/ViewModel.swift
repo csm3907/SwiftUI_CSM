@@ -23,7 +23,8 @@
 
 import Foundation
 
-class ViewModel {
+class ViewModel: ObservableObject {
     var title = "Hello"
-    var list = [String]()
+    @Published var list = [String]()
 }
+

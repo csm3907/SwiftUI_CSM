@@ -26,9 +26,26 @@ import SwiftUI
 struct EmojiView: View {
     var emoji: String
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(emoji)
-            .font(.system(size: 200))
+        VStack {
+            Text(emoji)
+                .font(.system(size: 200))
+                .toolbar {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Close")
+                    }
+            }
+            
+            NavigationLink("Show") {
+                EmojiView(emoji: emoji)
+            }
+            .padding()
+            
+        }
     }
 }
 

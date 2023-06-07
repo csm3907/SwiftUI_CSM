@@ -24,13 +24,17 @@
 import SwiftUI
 
 struct TwoWayBinding: View {
-    var value: String = "Hello"
+    @State private var value: String = "Hello"
     
     var body: some View {
         VStack(spacing: 70) {
             Text(value)
                 .font(.largeTitle)
             
+            TextField("Input", text: $value)
+                .padding()
+            
+            InputView(value: $value)
             
         }
     }

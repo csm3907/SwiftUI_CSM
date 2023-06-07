@@ -28,6 +28,7 @@ struct StatesApp: App {
     var body: some Scene {
         WindowGroup {
             MainList()
+                .environmentObject(ViewModel())
         }
     }
 }

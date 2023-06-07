@@ -24,17 +24,18 @@
 import SwiftUI
 
 struct InputView: View {
-    @State private var value: String = ""
+    @Binding var value: String
     
     var body: some View {
         VStack {
             TextField("Value", text: $value)
+                .padding()
         }
     }
 }
 
 struct InputView_Previews: PreviewProvider {
     static var previews: some View {
-        InputView()
+        InputView(value: .constant("Hello, SwiftUI"))
     }
 }

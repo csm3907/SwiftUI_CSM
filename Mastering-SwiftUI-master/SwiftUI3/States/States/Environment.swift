@@ -25,6 +25,8 @@ import SwiftUI
 
 struct Environment_Tutorials: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.horizontalSizeClass) var horizontalSize
     
     var body: some View {
         List {
@@ -33,7 +35,9 @@ struct Environment_Tutorials: View {
                 
                 Spacer()
                 
+                Text(colorScheme == .dark ? "Dark Mode" : "Light Mode")
                 
+                Text(horizontalSize == .compact ? "Compact" : "Regular")
             }
             .padding()
             

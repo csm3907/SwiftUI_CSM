@@ -27,6 +27,7 @@ struct SymbolScene: View {
     var name: String
     var color: Color
     
+    @Binding var selectedIndex: Int
     
     var body: some View {
         VStack {
@@ -38,6 +39,11 @@ struct SymbolScene: View {
                 .frame(width: 200, height: 200)
                 .foregroundColor(color)
             
+            Button {
+                selectedIndex = selectedIndex >= 2 ? 0 : selectedIndex + 1
+            } label: {
+                Text("Next Tab")
+            }
             
             Spacer()
         }
@@ -47,6 +53,6 @@ struct SymbolScene: View {
 
 struct SymbolScene_Previews: PreviewProvider {
     static var previews: some View {
-        SymbolScene(name: "circle", color: Color.red)
+        SymbolScene(name: "circle", color: Color.red, selectedIndex: .constant(0))
     }
 }
