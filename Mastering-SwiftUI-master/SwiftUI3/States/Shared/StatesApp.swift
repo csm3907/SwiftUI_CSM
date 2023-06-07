@@ -25,9 +25,12 @@ import SwiftUI
 
 @main
 struct StatesApp: App {
+    
+    @StateObject var viewModel = ViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            MainList()
+            MainList(viewModel: viewModel)
                 .environmentObject(ViewModel())
         }
     }

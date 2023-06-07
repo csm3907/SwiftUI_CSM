@@ -24,6 +24,9 @@
 import SwiftUI
 
 struct MainList: View {
+    
+    @ObservedObject var viewModel: ViewModel
+    
     var body: some View {
         NavigationView {
             List {
@@ -45,6 +48,6 @@ struct MainList: View {
 
 struct SystemViewList_Previews: PreviewProvider {
     static var previews: some View {
-        MainList()
+        MainList(viewModel: ViewModel())
     }
 }

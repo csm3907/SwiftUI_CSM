@@ -24,7 +24,7 @@
 import SwiftUI
 
 struct NumberView: View {
-    @ObservedObject var generator = RandomNumberGenerator()
+    @StateObject var generator = RandomNumberGenerator()
     
     var body: some View {
         Text("\(generator.number)")
