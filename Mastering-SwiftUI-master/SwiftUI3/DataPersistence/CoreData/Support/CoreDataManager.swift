@@ -46,5 +46,7 @@ struct CoreDataManager {
         })
         
         container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        prepareSampleData()
     }
 }

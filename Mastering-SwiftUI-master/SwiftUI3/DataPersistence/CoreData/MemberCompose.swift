@@ -30,13 +30,35 @@ struct MemberCompose: View {
     @State private var age: Int? = nil
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var context
     
     func addMember() {
+        let newMember = MemberEntity(context: context)
+        newMember.name = name
+        newMember.age = Int16(age ?? 0)
         
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        dismiss()
     }
     
     func editMember() {
+        guard let editTarget else { return }
         
+        editTarget.name = name
+        editTarget.age = Int16(age ?? 0)
+        
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        dismiss()
     }
     
     var body: some View {
@@ -44,9 +66,19 @@ struct MemberCompose: View {
         NavigationView {
             Form {
                 TextField("Name", text: $name)
+                    .onAppear {
+                        if let editTarget {
+                            name = editTarget.name ?? ""
+                        }
+                    }
                 
                 TextField("Age", value: $age, format: .number)
                     .keyboardType(.numberPad)
+                    .onAppear {
+                        if let editTarget {
+                            age = Int(editTarget.age)
+                        }
+                    }
                     
             }
             .toolbar {
@@ -118,5 +150,6 @@ struct MemberCompose: View {
 struct MemberCompose_Previews: PreviewProvider {
     static var previews: some View {
         MemberCompose(editTarget: nil)
+            .environment(\.managedObjectContext, CoreDataManager.shared.mainContext)
     }
 }

@@ -24,8 +24,8 @@
 import SwiftUI
 
 struct Storage_Tutorials: View {
-    @State private var number = 0
-    @State private var color = Color.yellow
+    @SceneStorage("number") private var number = 0
+    @AppStorage("color") private var color = Color.yellow
     
     var body: some View {
         VStack {

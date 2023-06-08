@@ -28,6 +28,11 @@ struct ExclusiveGesture_Tutorials: View {
     @ObservedObject var magnification = Magnification()
     @State private var currentGestureType = GestureType.rotation
     
+    
+    var gesture: some Gesture {
+        ExclusiveGesture(magnification.gesture, rotation.gesture)
+    }
+    
     var logo: some View {
         Image("swiftui-logo")
             .resizable()
@@ -42,10 +47,12 @@ struct ExclusiveGesture_Tutorials: View {
                     logo
                         .rotationEffect(rotation.finalAngle)
                         .scaleEffect(magnification.finalScale)
+                        .gesture(gesture)
                 } else {
                     logo
                         .rotationEffect(rotation.finalAngle)
                         .scaleEffect(magnification.finalScale)
+                        .gesture(magnification.gesture.exclusively(before: rotation.gesture))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

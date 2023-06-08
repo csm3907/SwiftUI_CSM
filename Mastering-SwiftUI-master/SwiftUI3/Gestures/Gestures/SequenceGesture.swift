@@ -27,6 +27,13 @@ struct SequenceGesture_Tutorials: View {
     @ObservedObject var longPress = LongPress()
     @ObservedObject var drag = Drag()
     
+    var sequence: some Gesture {
+        SequenceGesture(longPress.gesture, drag.gesture)
+            .onEnded({ _ in
+                longPress.activated = false
+            })
+    }
+    
     var body: some View {
         VStack {
             HStack(spacing: 50) {
@@ -44,6 +51,7 @@ struct SequenceGesture_Tutorials: View {
                     .frame(width: 100, height: 100)
                     .offset(drag.currentTranslation)
                     .offset(drag.totalTranslation)
+                    .gesture(sequence)
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

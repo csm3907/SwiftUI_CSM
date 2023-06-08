@@ -27,6 +27,10 @@ struct SimultaneousGesture_Tutorials: View {
     @ObservedObject var rotation = Rotation()
     @ObservedObject var magnification = Magnification()
     
+    var gesture: some Gesture {
+        SimultaneousGesture(rotation.gesture, magnification.gesture)
+    }
+    
     var body: some View {
         VStack {
             Image("swiftui-logo")
@@ -35,9 +39,7 @@ struct SimultaneousGesture_Tutorials: View {
                 .frame(width: 200, height: 200)
                 .rotationEffect(rotation.finalAngle)
                 .scaleEffect(magnification.finalScale)
-                .gesture(rotation.gesture)
-                .gesture(magnification.gesture)
-            
+                .gesture(gesture)
         }
     }
 }

@@ -13,7 +13,8 @@ struct DataPersistenceApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainList()                
+            MainList()
+                .environment(\.managedObjectContext, manager.mainContext)
         }
         #if os(macOS)
         .windowStyle(.hiddenTitleBar)
