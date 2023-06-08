@@ -25,8 +25,14 @@ import SwiftUI
 
 struct DynamicList: View {
     
+    var items = Product.sampleList
+    
     var body: some View {
         VStack {
+            
+            List(items, id: \.name) { item in
+                Text("\(item.name)")
+            }
             
         }
     }

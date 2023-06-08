@@ -24,11 +24,23 @@
 import SwiftUI
 
 struct StaticList: View {
+    
+    @State private var isOn = false
+    
     var body: some View {
-        VStack {
+        List {
+            HStack {
+                Text("Hello, World!")
+                Text("Hello, World!")
+            }
+                        
             Text("Hello, World!")
-            Text("Hello, World!")
-            Text("Hello, World!")
+            
+            Image(systemName: "star")
+            
+            Toggle(isOn: $isOn) {
+                Text("On/Off")
+            }
         }
     }
 }

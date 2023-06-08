@@ -26,13 +26,23 @@ import SwiftUI
 struct LazyGrid: View {
     var items = AppleProduct.sampleList
     
+    private let columns = [
+        GridItem(.adaptive(minimum: 200, maximum: .infinity),spacing: 50, alignment: .center),
+    ]
+    
+    private let rows = [
+        GridItem(.adaptive(minimum: 150, maximum: .infinity),spacing: nil, alignment: .leading),
+    ]
+    
     var body: some View {
-        VStack {
-            ForEach(items) { item in
-                ProductGridItem(product: item)
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: rows, spacing: 20) {
+                ForEach(items) { item in
+                    ProductGridItem(product: item)
+                }
             }
+            .padding()
         }
-        .padding()
     }
 }
 

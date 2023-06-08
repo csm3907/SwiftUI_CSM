@@ -24,14 +24,27 @@
 import SwiftUI
 
 struct EditMode: View {
-    private var items = AppleProduct.sampleList 
+    @State private var items = AppleProduct.sampleList 
     
     var body: some View {
         VStack {
-            List(items) { item in
-                Text(item.name)
+            List {
+                ForEach(items) { item in
+                    Text(item.name)
+                }
+                .onDelete { indexSet in
+                    items.remove(atOffsets: indexSet)
+                }
+                .onMove(perform: move)
             }
-        }        
+        }
+        .toolbar {
+            EditButton()
+        }
+    }
+    
+    func move(from: IndexSet, to: Int) {
+        items.move(fromOffsets: from, toOffset: to)
     }
 }
 

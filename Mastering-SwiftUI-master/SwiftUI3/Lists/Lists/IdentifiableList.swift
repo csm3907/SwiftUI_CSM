@@ -28,7 +28,9 @@ struct DynamicIdentifiableList: View {
     
     var body: some View {
         VStack {
-                        
+            List(items) { item in
+                Text(item.name)
+            }
         }
     }
 }

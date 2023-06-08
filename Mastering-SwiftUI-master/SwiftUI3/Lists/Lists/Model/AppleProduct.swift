@@ -24,7 +24,7 @@
 import Foundation
 
 struct AppleProduct: Identifiable, Hashable {
-    let id = UUID()
+    let id = UUID() // 개별 instance 를 구분하는 UUID값이다. List의 경우 Hashable을 같이 요구하는 경우가 많아 같이 선언 해주었따.
     let name: String
     let summary: String
     let category: String

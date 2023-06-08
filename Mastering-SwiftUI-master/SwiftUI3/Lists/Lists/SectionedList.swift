@@ -29,12 +29,40 @@ struct SectionedList: View {
     var body: some View {
         VStack {
             List {
-                Text("1")
-                Text("2")
-                Text("3")
-                Text("4")
-                Text("5")
-            }            
+                ForEach(items) { item in
+                    Section {
+                        ForEach(item.list) { listItem in
+                            Text(listItem.name)
+                        }
+                    } header: {
+                        Text(item.header)
+                    } footer: {
+                        Text(item.footer ?? "")
+                    }
+                }
+            }
+            
+            
+//            List {
+//
+//                Section {
+//                    Text("1")
+//                    Text("2")
+//                    Text("3")
+//                }
+//
+//                Section {
+//                    Text("4")
+//                    Text("5")
+//                } header: {
+//                    Text("header")
+//                } footer: {
+//                    Text("footer")
+//                }
+//
+//
+//
+//            }
         }
     }
 }

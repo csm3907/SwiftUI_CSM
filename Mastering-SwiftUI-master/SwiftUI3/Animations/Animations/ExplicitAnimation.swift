@@ -25,7 +25,7 @@ import SwiftUI
 
 struct ExplicitAnimation: View {
     @State private var position = CGPoint.zero
-    
+        
     var easeInOut: Animation {
         Animation.easeInOut
     }
@@ -42,7 +42,9 @@ struct ExplicitAnimation: View {
             
             HStack {
                 Button("Animate") {
-                    position = position == .zero ? CGPoint(x: 300, y: 500) : .zero
+                    withAnimation(.linear) {
+                        position = position == .zero ? CGPoint(x: 300, y: 500) : .zero
+                    }
                 }
                 .padding()
                 

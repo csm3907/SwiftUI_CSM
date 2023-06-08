@@ -31,6 +31,10 @@ struct PullToRefresh: View {
         List(items) { item in
             Text(item.name)
         }
+        .animation(.easeInOut, value: items)
+        .refreshable {
+            await refresh()
+        }
     }
     
     private func refresh() async {

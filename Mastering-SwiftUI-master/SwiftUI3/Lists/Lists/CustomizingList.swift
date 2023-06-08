@@ -31,18 +31,27 @@ struct CustomizingList: View {
                     Text("Hello, List!")
                     Text("List Row Insets")
                     Text("List Row Background")
+                        .listRowSeparator(.hidden)
                     Text("List Row Separator")
+                        .listRowInsets(EdgeInsets(top: 0, leading: 80, bottom: 0, trailing: 0))
                     Text("List Row Separator Tint")
+                        .listRowBackground(Color.yellow)
+                        .listRowSeparatorTint(.blue)
                 }
+                .listRowInsets(EdgeInsets(top: 0, leading: 60, bottom: 0, trailing: 0))
                 
                 Section() {
                     Text("One")
                     Text("Two")
                 }
+                .listRowInsets(EdgeInsets(top: 0, leading: 60, bottom: 0, trailing: 0))
                 
                 Section() {
                     Text("Custom Header")
+                } header: {
+                    CustomHeaderView(title: "Third", imageName: "pencil")
                 }
+                
             }
         }
     }

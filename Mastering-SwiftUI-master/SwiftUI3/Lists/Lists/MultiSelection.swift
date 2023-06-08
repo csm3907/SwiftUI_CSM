@@ -26,15 +26,33 @@ import SwiftUI
 struct MultiSelection: View {
     var items = AppleProduct.sampleList
     
+    @State private var selected: Set<AppleProduct> = []
     
     var body: some View {
         VStack {
-            Text(" item(s) selected")
+            Text("\(selected.count) item(s) selected")
                 .font(.title)
             
-            List(items) { item in
-                Text(item.name)
+            List(items, id: \.self) { item in
+                Button {
+                    if selected.contains(item) {
+                        selected.remove(item)
+                    } else {
+                        selected.insert(item)
+                    }
+                } label: {
+                    if selected.contains(item) {
+                        HStack {
+                            Text(item.name)
+                            Spacer()
+                            Image(systemName: "checkmark")
+                        }
+                    } else {
+                        Text(item.name)
+                    }
+                }
             }
+            
         }
         .toolbar {
             #if os(iOS)

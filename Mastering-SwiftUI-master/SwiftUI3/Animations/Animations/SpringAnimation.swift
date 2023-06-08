@@ -33,6 +33,7 @@ struct SpringAnimation: View {
                 .frame(width: 50, height: 50)
                 .position(position)
                 .offset(x: 50, y: 50)
+                .animation(.spring(response: 0.8, dampingFraction: 0.7, blendDuration: 0))
             
             Spacer()
             
@@ -40,6 +41,7 @@ struct SpringAnimation: View {
                 position = position == .zero ? CGPoint(x: 300, y: 500) : .zero
             }
             .padding()
+            
         }
     }
 }

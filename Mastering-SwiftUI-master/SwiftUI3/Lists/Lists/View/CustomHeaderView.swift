@@ -24,13 +24,19 @@
 import SwiftUI
 
 struct CustomHeaderView: View {
+    
+    let title: String
+    let imageName: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Label(title, systemImage: imageName)
+            .font(.largeTitle)
+            .frame(minHeight: 60)
     }
 }
 
 struct CustomHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomHeaderView()
+        CustomHeaderView(title: "Title", imageName: "star")
     }
 }

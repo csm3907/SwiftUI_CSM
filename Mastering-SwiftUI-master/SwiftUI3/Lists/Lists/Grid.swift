@@ -28,8 +28,15 @@ struct Grid: View {
    
    var body: some View {
       VStack {
-         
+          ForEach(0..<3) { row in
+              HStack {
+                  ForEach(0..<2) { col in
+                      ProductGridItem(product: items[row * 3 + col])
+                  }
+              }
+          }
       }
+      .padding()
    }
 }
 

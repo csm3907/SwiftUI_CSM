@@ -33,6 +33,8 @@ struct AnimationBasics: View {
                 .frame(width: 50, height: 50)
                 .position(position)
                 .offset(x: 50, y: 50)
+                //.animation(.default, value: position)
+                .animation(.easeInOut(duration: 3).speed(2), value: position)
             
             Spacer()
             

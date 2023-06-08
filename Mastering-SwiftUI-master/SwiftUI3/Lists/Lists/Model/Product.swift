@@ -24,6 +24,8 @@
 import Foundation
 
 struct Product {
+    //var id: ObjectIdentifier
+    
     let name: String
     let summary: String
     let category: String
