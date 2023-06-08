@@ -25,14 +25,15 @@ import SwiftUI
 
 struct ObservableList: View {
     @State private var value: String = ""
+    @ObservedObject var viewModel = ViewModel()
     
     var body: some View {
         VStack {
-            Text("Hello")
+            Text(viewModel.title)
                 .font(.largeTitle)
             
             Button {
-                
+                viewModel.title = "Hi"
             } label: {
                 Text("Update Title")
             }
@@ -44,15 +45,16 @@ struct ObservableList: View {
                     .padding()
                 
                 Button {
-                    
+                    viewModel.list.insert(value, at: 0)
+                    value = ""
                 } label: {
                     Text("Add To List")
                 }
                 .padding()
             }
             
-            List {
-                Text("Hello")
+            List(viewModel.list, id: \.self) { item in
+                Text(item)
             }
         }
     }

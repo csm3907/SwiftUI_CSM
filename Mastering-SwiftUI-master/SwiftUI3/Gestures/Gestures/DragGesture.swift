@@ -23,12 +23,49 @@
 
 import SwiftUI
 
-struct DragGesture_Tutorials: View {    
+struct DragGesture_Tutorials: View {
+    
+    @State private var currentTranslation = CGSize.zero
+    @State private var finalTranslation = CGSize.zero
+    
+    @GestureState private var currentTranslation2 = CGSize.zero
+    
+    var dragGesture: some Gesture {
+        return DragGesture(minimumDistance: 10, coordinateSpace: .local)
+            .onChanged { value in
+                currentTranslation = value.translation
+            }
+            .onEnded { value in
+                currentTranslation = .zero
+                
+                var t = finalTranslation
+                t.width += value.translation.width
+                t.height += value.translation.height
+                finalTranslation = t
+            }
+    }
+    
+    var dragGestureWithGestureState: some Gesture {
+        return DragGesture()
+            .updating($currentTranslation2) { value, state, transaction in
+                state = value.translation
+            }
+            .onEnded { value in
+                var t = finalTranslation
+                t.width += value.translation.width
+                t.height += value.translation.height
+                finalTranslation = t
+            }
+    }
+    
     var body: some View {
         VStack {
             Circle()
                 .foregroundColor(.yellow)
-                .frame(width: 100, height: 100)            
+                .frame(width: 100, height: 100)
+                .offset(finalTranslation)
+                .offset(currentTranslation)
+                .gesture(dragGesture)
         }
     }
 }

@@ -24,7 +24,7 @@
 import SwiftUI
 
 struct OneWayBinding: View {
-    let text: String = "Hello, SwiftUI"
+    @State private var text: String = "Hello, SwiftUI"
     
     var body: some View {
        VStack(spacing: 70) {
@@ -32,7 +32,7 @@ struct OneWayBinding: View {
              .font(.largeTitle)
           
            Button {
-               
+               text = "Hi, SwiftUI"
            } label: {
                Text("Update")
            }

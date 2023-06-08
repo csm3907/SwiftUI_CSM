@@ -29,5 +29,8 @@ struct NavigationApp: App {
         WindowGroup {
             MainView()
         }
+        .commands {
+            SidebarCommands()
+        }
     }
 }

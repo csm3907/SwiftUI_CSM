@@ -32,15 +32,57 @@ struct SwipeActions: View {
             Section("Favorites") {
                 ForEach(favorites) { item in
                     Text(item.name)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    if let index = favorites.firstIndex(of: item) {
+                                        favorites.remove(at: index)
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                        }
                 }
             }
             
             Section("All Products") {
                 ForEach(allProducts) { item in
                     Text(item.name)
+                        .swipeActions(edge: .leading) {
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    if let index = favorites.firstIndex(of: item) {
+                                        favorites.remove(at: index)
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                            
+                            Button {
+                                withAnimation {
+                                    favorites.append(item)
+                                }
+                            } label: {
+                                Text("Menu")
+                            }
+                            .tint(.gray)
+                        }
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button {
+                                withAnimation {
+                                    favorites.append(item)
+                                }
+                            } label: {
+                                Image(systemName: "hand.thumbsup")
+                            }
+                            .tint(.blue)
+                        }
                 }
-            }            
+            }
         }
+        
     }
 }
 

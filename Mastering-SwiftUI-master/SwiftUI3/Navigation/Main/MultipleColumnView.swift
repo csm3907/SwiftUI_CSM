@@ -34,7 +34,28 @@ struct MultipleColumnView: View {
                 }
             }
             .navigationTitle("Emoji")
-        }        
+            
+            ZStack {
+                Color.yellow
+                
+                Text("Secondary Scene")
+                    .font(.largeTitle)
+            }
+            .ignoresSafeArea()
+            
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    #if os(macOS)
+                    
+                    #endif
+                } label: {
+                    Text("Button")
+                }
+            }
+        }
+        //.navigationViewStyle(.stack)
     }
 }
 
